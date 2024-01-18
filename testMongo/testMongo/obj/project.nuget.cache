@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sGk8sWgKFaJfD7fF1FlHdC7lqPmi8ydbOHEOq5kkpVFbuJXby8LuBLqem3kiQDnFNCuInkEqvQmbUwgjKTOPsQ==",
+  "dgSpecHash": "5ClXngZAIEIs++Rjb/LmMr6s6BqDERSb+PrYICXjitMpEO6mAJeTWlpLxy2ArE1Tglhy8i5EZpB5OootfhvZcw==",
   "success": true,
-  "projectFilePath": "C:\\Mongo\\mongo-backup\\testMongo\\testMongo\\testMongo.csproj",
+  "projectFilePath": "C:\\Mongo\\mongo2\\testMongo\\testMongo\\testMongo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\59011-82-08\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\59011-82-08\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

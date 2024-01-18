@@ -42,8 +42,9 @@ namespace testMongo
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                                   policy =>
                                   {
-                                      policy.WithOrigins("http://127.0.0.1:5500"
+                                      policy.WithOrigins("http://localhost:5173"
                                                           );
+                                    
                                   });
             });
 
