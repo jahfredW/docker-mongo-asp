@@ -16,8 +16,6 @@ namespace testMongo.Models
         [BsonElement("adresse")]
         public Adresse Adresse { get; set; }
 
-        [BsonElement("localisation")]
-        public Localisation Localisation { get; set; }
 
         [BsonElement("styles")]
         public List<string> Styles { get; set; }

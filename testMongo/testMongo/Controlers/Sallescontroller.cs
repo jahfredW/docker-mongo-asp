@@ -66,6 +66,7 @@ public class SallesController : ControllerBase
         SalleFromRepo.Nom = entity.Nom;
 
         await _SallesService.UpdateAsync(id, SalleFromRepo);
+
         return NoContent();
     }
 
