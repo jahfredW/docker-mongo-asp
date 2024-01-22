@@ -33,6 +33,10 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"svelte-material-ui": "^7.0.0-beta.16"
+		"@popperjs/core": "^2.11.8",
+		"flowbite": "^2.2.1",
+		"flowbite-svelte": "^0.44.22",
+		"svelte-material-ui": "^7.0.0-beta.16",
+		"tailwind-merge": "^2.2.0"
 	}
 }

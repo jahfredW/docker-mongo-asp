@@ -24,6 +24,6 @@ services:
       MONGO_INITDB_DATABASE: salles
     volumes:
       - dbdata6:/data/db
-      - ./testMongo/init-scripts/script.js:/docker-entrypoint-initdb.d/script.js
+      - ./testMongo/init-scripts/:/docker-entrypoint-initdb.d/
 volumes:
   dbdata6:

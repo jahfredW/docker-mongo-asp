@@ -1,8 +1,10 @@
 // Ajoutez un délai de 10 secondes (10000 millisecondes) avant de tenter de se connecter à la base de données
 
-var mongoHost = process.env.MONGO_DB_HOST || 'localhost';
-var mongoPort = process.env.MONGO_DB_PORT || 27017;
-var mongoDatabase = process.env.MONGO_DB_DATABASE || 'salles';
+//var mongoHost = process.env.MONGO_DB_HOST || 'localhost';
+//var mongoPort = process.env.MONGO_DB_PORT || 27017;
+//var mongoDatabase = process.env.MONGO_DB_DATABASE || 'salles';
+
+db = connect('mongodb://127.0.0.1:27017/salles');
 
 
 setTimeout(() => {

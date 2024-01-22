@@ -22,7 +22,7 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-COPY ["testMongo/certificate.pfx", "app/certificate.pfx"]
+COPY ["testMongo/dockerSSL.pfx", "app/certificate.pfx"]
 
 # Set the path to the SSL certificate
 ENV ASPNETCORE_Kestrel__Certificates__Default__Path=/app/certificate.pfx
