@@ -1,23 +1,28 @@
 <script>
-    import { page } from '$app/stores';
-	import { onMount } from 'svelte'
-    import { getSalleById } from '../../api/salles/+server';
-    const { salleId } = $page.params;
-    console.log(salleId); 
-    
-    let response; 
-    onMount( async () => {
-        try {
-            console.log(salleId);
-            response = await getSalleById(salleId)
-            console.log(response);
-        } catch (error) {
-            console.log(error);
-        }
-    })
+    export let data;
+    // const salles = data.sallesJson;
+    // console.log(salles);
+    let salleName = '';
+    const salle = data.salles;
+    const Component = data.Component;
+    console.log(salle);
+    console.log(Component);
+    let test;
+  
 </script>
 
-{#if response}
-<h2>{response}</h2>
-{/if}
 
+{#if salle}
+<div class="w-1/2 mx-auto my-5">
+    <Component { salle }/>
+</div>
+
+
+{/if}  
+
+<!-- <select bind:value={ salleName }>
+  <option value="">Nom de la salle ? </option>
+  {#each sallesJson as salle}
+  <option value={ salle }>{ salle }</option>
+  {/each}
+</select>  -->

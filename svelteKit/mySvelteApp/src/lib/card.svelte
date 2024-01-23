@@ -1,10 +1,10 @@
 <script>
     export let salle;
     const adresse = `${salle.numero}, ${salle.voie}`; 
-    const adresse2 = `${sallecodePostal}, ${salle.ville}`;
+    const adresse2 = `${salle.codePostal}, ${salle.ville}`;
 </script>
 
-<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+<div class="w-3/4 mx-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <div class="p-5">
         <div>
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">{ salle.nom }</h5>

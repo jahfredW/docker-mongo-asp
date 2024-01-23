@@ -14,15 +14,16 @@ const url = `https://${host}:${port}`;
 export async function GET(){
     try {
         const response = await fetch(`${url}/api/salles`);
+        console.log(response)
         const responseJson =  await response.json();
         console.log(responseJson);
         const data = responseJson.map((salle) => {
             return {
                 nom: salle.nom,
                 numero: salle.adresse.numero,
-                // voie: salle.adresse.voie,
-                // codePostal: salle.adresse.codePostal,
-                // ville: salle.adresse.ville,
+                voie: salle.adresse.voie,
+                codePostal: salle.adresse.codePostal,
+                ville: salle.adresse.ville,
             };
         });
         return new Response(JSON.stringify(data), {
@@ -37,22 +38,36 @@ export async function GET(){
     }
 }
 
-// /**
-//  * 
-//  * @param {int} id id de la salle
-//  * @returns réponse json de la salle 
-//  */
-// // export const GET = async (id) => {
-//     try {
-//         const response = await fetch(`https://localhost:44314/api/salles/${id}`)
-//         console.log(response);
-//         // let data = await response.json();
-//         // console.log(data)
-//         return await response.json();
-//     } catch(error){
-//         console.error('Erreur lors de la récupération des données :', error);
-//     }
-// } 
+// méthode POST
+export async function POST({ request }) {
+    try {
+        const { request } = requestEvent;
+        const formdata = new FormData();
+        formdata.append('nom', request.data.nom);
+
+        const response = await fetch(`${url}/api/salles`, {
+            method: 'POST',
+            headers : {
+                'Content-Type': 'multipart/form-data'
+            },
+            body: formdata,
+    })
+        const data = await response.json();
+        return new Response(JSON.stringify(data), {
+            status: response.status,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    } catch (error) {
+        console.error(error);
+    }
+    
+
+}
+
+
+
 
   
     
