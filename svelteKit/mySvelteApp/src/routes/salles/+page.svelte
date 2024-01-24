@@ -3,7 +3,7 @@
     export let data;
 
     const salles = data.sallesMap;
-    console.log(salles);
+    // console.log(salles);
     const Component = data.Component;
    
 </script>

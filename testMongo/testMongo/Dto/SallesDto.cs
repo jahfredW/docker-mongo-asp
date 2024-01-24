@@ -1,11 +1,11 @@
-﻿
+﻿using MongoDB.Bson;
 using testMongo.Models;
 
 namespace testMongo.Dto
 {
     public class SallesDto
     {
-        public int Id { get; set; }
+        public ObjectId Id { get; set; }
 
         public string Nom { get; set; }
 
@@ -24,7 +24,7 @@ namespace testMongo.Dto
 
     public class SallesDtoOut
     {
-        public int Id { get; set; }
+        public ObjectId Id { get; set; }
 
         public string Nom { get; set; }
 

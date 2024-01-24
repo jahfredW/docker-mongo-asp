@@ -7,12 +7,12 @@
 db = connect('mongodb://127.0.0.1:27017/salles');
 
 
-setTimeout(() => {
+
     // Connectez-vous à la base de données MongoDB ici
     db.salles.insertMany([
         {
-            "_id": 1,
-            "nom": "CACA Jazz Club",
+            "_id": ObjectId('65b0fcbea47e5a041477508d'),
+            "nom": "Super Jazz Club",
             "adresse": {
                 "numero": 4,
                 "voie": "Rue des Escaliers Sainte-Anne",
@@ -36,7 +36,7 @@ setTimeout(() => {
             "capacite": NumberInt(300),
             "smac": true
         }, {
-            "_id": 2,
+            "_id": ObjectId('65b0ff842d51c72753883658'),
             "nom": "Paloma",
             "adresse": {
                 "numero": 250,
@@ -57,7 +57,7 @@ setTimeout(() => {
             "smac": true
         },
         {
-            "_id": 3,
+            "_id": ObjectId('65b0ff842d51c75753883658'),
             "nom": "Sonograf",
             "adresse": {
                 "voie": "D901",
@@ -72,4 +72,3 @@ setTimeout(() => {
             "styles": ["blues", "rock"]
         }
     ])
-}, 10000);

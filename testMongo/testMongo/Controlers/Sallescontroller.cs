@@ -6,6 +6,8 @@ using testMongo.Services;
 //using testMongo.Models.Data;
 using testMongo.Models;
 using testMongo.Dto;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace testMongo.Controllers;
 
@@ -31,7 +33,8 @@ public class SallesController : ControllerBase
     }
 
     [HttpGet("{id}", Name = "GetSalleById")]
-    public async Task<ActionResult<Salle>> Get(int id)
+ 
+    public async Task<ActionResult<Salle>> Get(ObjectId id)
     {
         var SalleItem = await _SallesService.GetAsync(id);
 
@@ -44,7 +47,8 @@ public class SallesController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Salle>> CreateSalle(Salle entity)
+    [Consumes("multipart/form-data")]
+    public async Task<ActionResult<Salle>> CreateSalle([FromForm]Salle entity)
     {
         await _SallesService.CreateAsync(entity);
 
@@ -52,7 +56,7 @@ public class SallesController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult> UpdateSalle(int id, Salle entity)
+    public async Task<ActionResult> UpdateSalle(ObjectId id, Salle entity)
     {
         var SalleFromRepo = await _SallesService.GetAsync(id);
 
@@ -71,7 +75,7 @@ public class SallesController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(ObjectId id)
     {
         var book = await _SallesService.GetAsync(id);
 

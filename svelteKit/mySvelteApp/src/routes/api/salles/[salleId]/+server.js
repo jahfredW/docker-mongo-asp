@@ -14,8 +14,9 @@ const url = `https://${host}:${port}`;
 export async function GET(requestEvent){
     try {
         const  { params } = requestEvent;
-        // console.log(params)
+       
         const { salleId } = params;
+        console.log(salleId);
         const response = await fetch(`${url}/api/salles/${salleId}`);
         console.log("réponse",response)
         const responseJson =  await response.json();

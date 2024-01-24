@@ -16,8 +16,8 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       - NUGET_FALLBACK_PACKAGES=/.nuget/fallbackpackages
     volumes:
-      - C:\Mongo\mongo-backup\testMongo\testMongo:/app
-      - C:\Mongo\mongo-backup\testMongo:/src
+      - C:\Mongo\mongo2\testMongo\testMongo:/app
+      - C:\Mongo\mongo2\testMongo:/src
       - C:\Users\59011-82-08\vsdbg\vs2017u5:/remote_debugger:rw
       - C:\Users\59011-82-08\.nuget\packages\:/.nuget/packages:ro
       - C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages:/.nuget/fallbackpackages:ro

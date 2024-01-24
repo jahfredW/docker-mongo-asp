@@ -4,6 +4,7 @@ using testMongo.Models;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using testMongo.Services;
+using Microsoft.AspNetCore.Hosting;
 
 namespace testMongo
 {
@@ -26,6 +27,7 @@ namespace testMongo
             //}
 
             var builder = WebApplication.CreateBuilder(args);
+
 
             var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
