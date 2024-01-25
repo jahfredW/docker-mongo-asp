@@ -33,9 +33,12 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@jamescoyle/svelte-icon": "^0.1.1",
+		"@mdi/js": "^7.4.47",
 		"@popperjs/core": "^2.11.8",
 		"flowbite": "^2.2.1",
 		"flowbite-svelte": "^0.44.22",
+		"leaflet": "^1.9.4",
 		"svelte-material-ui": "^7.0.0-beta.16",
 		"tailwind-merge": "^2.2.0"
 	}

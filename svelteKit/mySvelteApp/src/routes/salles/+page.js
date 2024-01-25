@@ -1,19 +1,23 @@
-import  Card  from "$lib/card.svelte";
-
 // import { getAllSalles } from '../api/salles/+server'
 // process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0
+
+
+export const ssr = false;
+
+// import Leaflet from '$lib/leaflet.svelte'
 
 
 // Ici on charge les objets non sérialisables, constructeurs et classes des composants. 
 // les datas sont récupérées via les page.server.js avec le params data.  
 /** @type {import('./$types').PageLoad} */
-export const load = async (loadEvent) => {
+export const load = async ({ fetch }) => {
     try {
-        const {  data } = loadEvent;
-       
+        let data = await fetch('/api/salles');
+        const salles = await data.json();
         return {  
-            ...data,
-            Component : Card
+               salles : salles,
+               //Component : Leaflet,
+            // Leaflet : Leaflet,
          }
     } catch (error) {
         console.log(error);

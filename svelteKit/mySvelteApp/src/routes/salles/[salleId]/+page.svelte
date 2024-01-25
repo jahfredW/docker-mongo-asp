@@ -20,9 +20,3 @@
 
 {/if}  
 
-<!-- <select bind:value={ salleName }>
-  <option value="">Nom de la salle ? </option>
-  {#each sallesJson as salle}
-  <option value={ salle }>{ salle }</option>
-  {/each}
-</select>  -->

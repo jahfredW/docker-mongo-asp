@@ -60,6 +60,7 @@ db = connect('mongodb://127.0.0.1:27017/salles');
             "_id": ObjectId('65b0ff842d51c75753883658'),
             "nom": "Sonograf",
             "adresse": {
+                "numero": 250,
                 "voie": "D901",
                 "codePostal": "84250",
                 "ville": "Le Thor",
@@ -70,5 +71,37 @@ db = connect('mongodb://127.0.0.1:27017/salles');
             },
             "capacite": NumberInt(200),
             "styles": ["blues", "rock"]
+        },
+        {
+            "_id": ObjectId('65b0ff842d51c75753883741'),
+            "nom": "Chez Fredator",
+            "adresse": {
+                "numero": 250,
+                "voie": "route du Fion",
+                "codePostal": "59240",
+                "ville": "Dunkerque",
+                "localisation": {
+                    "type": "Point",
+                    "coordinates": [51.049999, 2.36667]
+                }
+            },
+            "capacite": NumberInt(200),
+            "styles": ["anal", "partouzes"]
+        },
+        {
+            "_id": ObjectId('65b0ff842d51c75753883721'),
+            "nom": "Chez Arnaud",
+            "adresse": {
+                "numero": 66,
+                "voie": "route de Gaetan Fenix",
+                "codePostal": "41225178",
+                "ville": "Rio De Janeiro",
+                "localisation": {
+                    "type": "Point",
+                    "coordinates": [445454.95, 5030015.16]
+                }
+            },
+            "capacite": NumberInt(200),
+            "styles": ["anal", "partouzes"]
         }
     ])

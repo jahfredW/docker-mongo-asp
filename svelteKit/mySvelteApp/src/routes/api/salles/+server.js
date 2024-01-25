@@ -3,13 +3,15 @@ import { PUBLIC_HOST, PUBLIC_PORT } from '$env/static/public'
 const host = PUBLIC_HOST;
 const port = PUBLIC_PORT
 
-console.log(host)
+
 const url = `https://${host}:${port}`;
 
 /**
  * Recupération de toutes les salles
  * @returns response sous forme de json 
  */
+
+
 // process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0
 export async function GET(){
     try {
@@ -19,11 +21,13 @@ export async function GET(){
         console.log(responseJson);
         const data = responseJson.map((salle) => {
             return {
+                id: salle.id,
                 nom: salle.nom,
                 numero: salle.adresse.numero,
                 voie: salle.adresse.voie,
                 codePostal: salle.adresse.codePostal,
                 ville: salle.adresse.ville,
+                coords: [salle.adresse.localisation.coordinates[0] , salle.adresse.localisation.coordinates[1]]
             };
         });
         return new Response(JSON.stringify(data), {
@@ -38,7 +42,7 @@ export async function GET(){
     }
 }
 
-// méthode POST
+// méthode POST A FAIRE EVOLUER
 export async function POST({ request }) {
     try {
         const { request } = requestEvent;

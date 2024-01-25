@@ -33,12 +33,4 @@
           &copy;2020 Acme Corp. All rights reserved.
         </p>
       </div>
-
-      <!-- <ul>
-		{#each data.todos as todo (todo.id)}
-			<li>
-				{todo.description}
-			</li>
-		{/each}
-	</ul> -->
 </div>

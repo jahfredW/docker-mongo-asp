@@ -1,8 +1,9 @@
 
-export const load = async () => {
-    const notification = "hello world";
+// import { getAllSalles } from '../api/salles/+server'
+// process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0
 
-    return { 
-        notification
-    }
-}
+
+
+export const ssr = false;
+
+

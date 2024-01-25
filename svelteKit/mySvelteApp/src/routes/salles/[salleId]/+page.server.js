@@ -16,7 +16,6 @@ export const load = async ({fetch, params}) => {
         //     return salle.nom;
         // })
 
-        console.log(salle)
         return {  
             salles : salle,
             // Component : Card
