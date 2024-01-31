@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using testMongo.Models;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System.Collections;
 
 namespace testMongo.Services
 {
@@ -11,16 +12,15 @@ namespace testMongo.Services
         private readonly IMongoCollection<Salle> _SallesCollection;
 
         public SallesService(
-            IOptions<SalleDatabaseSettings> SalleStoreDatabaseSettings)
+            IOptions<DatabaseSettings> salleStoreDatabaseSettings)
         {
             var mongoClient = new MongoClient(
-                SalleStoreDatabaseSettings.Value.ConnectionString);
+                salleStoreDatabaseSettings.Value.ConnectionString);
 
             var mongoDatabase = mongoClient.GetDatabase(
-                SalleStoreDatabaseSettings.Value.DatabaseName);
+                salleStoreDatabaseSettings.Value.DatabaseName);
 
-            _SallesCollection = mongoDatabase.GetCollection<Salle>(
-                SalleStoreDatabaseSettings.Value.CollectionName);
+            _SallesCollection = mongoDatabase.GetCollection<Salle>(Salle.CollectionName());
         }
 
         public async Task<List<Salle>> GetAsync() =>

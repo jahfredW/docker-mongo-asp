@@ -8,8 +8,10 @@ using testMongo.Models;
 using testMongo.Dto;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Microsoft.AspNetCore.Authorization;
 
 namespace testMongo.Controllers;
+
 
 [Route("api/[controller]")]
 [ApiController]
@@ -24,13 +26,15 @@ public class SallesController : ControllerBase
         _mapper = mapper;
     }
 
+    
     [HttpGet]
-    public  async Task<ActionResult<IEnumerable<SallesDtoOut>>> Get()
+    public async Task<ActionResult<IEnumerable<SallesDtoOut>>> Get()
     {
         var listeSalles =  await _SallesService.GetAsync();
         var  salles = _mapper.Map<IEnumerable<SallesDtoOut>>(listeSalles);
         return Ok(salles);
     }
+
 
     [HttpGet("{id}", Name = "GetSalleById")]
  

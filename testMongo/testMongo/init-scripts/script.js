@@ -105,3 +105,20 @@ db = connect('mongodb://127.0.0.1:27017/salles');
             "styles": ["anal", "partouzes"]
         }
     ])
+
+
+
+db.users.insertMany([
+    {
+        "_id": ObjectId('65b0fcbea47e5a041477512d'),
+        "email": "fred.gruwe@gmail.com",
+        "password": "abcdef",
+        "role" : "admin"
+    },
+    {
+        "_id": ObjectId('65b0ff842d51c75753513658'),
+        "email": "admin@admin.com",
+        "password": "abcdef",
+        "role": "user"
+    }
+])

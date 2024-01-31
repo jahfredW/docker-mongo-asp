@@ -1,13 +1,16 @@
-name: dockercompose2820259310930141123
+name: dockercompose12348751629212740242
 services:
   mongodb:
-    image: mongo:6-jammy
+    container_name: mongoDb
+    environment:
+      MONGO_INITDB_DATABASE: salles
+    image: mongo:6
     networks:
       default: null
     ports:
       - mode: ingress
         target: 27017
-        published: "27017"
+        published: "27018"
         protocol: tcp
     volumes:
       - type: volume
@@ -15,13 +18,57 @@ services:
         target: /data/db
         volume: {}
       - type: bind
-        source: C:\Mongo\mongo-backup\testMongo\testMongo\init-scripts
+        source: C:\Mongo\mongo2\testMongo\testMongo\init-scripts
+        target: /docker-entrypoint-initdb.d
+        bind:
+          create_host_path: true
+  pgadmin:
+    container_name: pgadmin4_container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    image: dpage/pgadmin4
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 80
+        published: "8888"
+        protocol: tcp
+    restart: always
+    volumes:
+      - type: volume
+        source: pgadmin-data
+        target: /var/lib/pgadmin
+        volume: {}
+  posgres:
+    container_name: local_pgdb
+    environment:
+      POSTGRES_DB: db_test
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: root
+    image: postgres
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 5432
+        published: "5432"
+        protocol: tcp
+    restart: always
+    volumes:
+      - type: volume
+        source: local_pgdata
+        target: /var/lib/postgresql/data
+        volume: {}
+      - type: bind
+        source: C:\Mongo\mongo2\testMongo\testMongo\init-postgres
         target: /docker-entrypoint-initdb.d
         bind:
           create_host_path: true
   testmongo:
     build:
-      context: C:\Mongo\mongo-backup\testMongo
+      context: C:\Mongo\mongo2\testMongo
       dockerfile: testMongo/Dockerfile
     depends_on:
       mongodb:
@@ -30,7 +77,6 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: https://+:443;http://+:80
-      MONGODB_CONNECTION_STRING: mongodb://mongodb:27017/salles
     image: testmongo
     networks:
       default: null
@@ -40,6 +86,10 @@ services:
         protocol: tcp
       - mode: ingress
         target: 443
+        protocol: tcp
+      - mode: ingress
+        target: 443
+        published: "45556"
         protocol: tcp
     volumes:
       - type: bind
@@ -56,7 +106,11 @@ services:
           create_host_path: true
 networks:
   default:
-    name: dockercompose2820259310930141123_default
+    name: dockercompose12348751629212740242_default
 volumes:
   dbdata6:
-    name: dockercompose2820259310930141123_dbdata6
+    name: dockercompose12348751629212740242_dbdata6
+  local_pgdata:
+    name: dockercompose12348751629212740242_local_pgdata
+  pgadmin-data:
+    name: dockercompose12348751629212740242_pgadmin-data

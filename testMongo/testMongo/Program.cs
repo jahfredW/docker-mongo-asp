@@ -5,6 +5,10 @@ using MongoDB.Driver;
 using MongoDB.Bson;
 using testMongo.Services;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using IFramework.Infrastructure;
 
 namespace testMongo
 {
@@ -32,10 +36,11 @@ namespace testMongo
             var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
             // Add services to the container.
-            builder.Services.Configure<SalleDatabaseSettings>(
+            builder.Services.Configure<DatabaseSettings>(
                 builder.Configuration.GetSection("SallesDatabase"));
 
             builder.Services.AddTransient<SallesService>();
+            builder.Services.AddTransient<UsersService>();
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -48,6 +53,50 @@ namespace testMongo
                                                           );
                                     
                                   });
+            });
+
+            var test = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]);
+
+            // gestion du JWToken 
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(o =>
+            {
+                //o.Events = new JwtBearerEvents()
+                //{
+                //    OnAuthenticationFailed = c =>
+                //    {
+                //        var test = c.GetDescription();
+                //        return new Task<string>(test);
+                //    }
+                //};
+
+
+
+
+
+                o.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                    ValidAudience = builder.Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey
+
+                    
+                    (Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+                    ValidateIssuer = false,
+                    ValidateAudience = true,
+                    ValidateLifetime = false,
+                    ValidateIssuerSigningKey = true
+                };
+            });
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminOnly", policy =>
+                    policy.RequireRole("admin"));
             });
 
             // Add services to the container.
@@ -70,6 +119,8 @@ namespace testMongo
             }
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

@@ -1,6 +1,8 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace testMongo.Models
 {
@@ -16,7 +18,6 @@ namespace testMongo.Models
         [BsonElement("adresse")]
         public Adresse? Adresse { get; set; } 
 
-
         [BsonElement("styles")]
         public List<string>? Styles { get; set; }
 
@@ -28,9 +29,10 @@ namespace testMongo.Models
 
         [BsonElement("smac")]
         public bool? Smac { get; set; }
+
+        public static string CollectionName()
+        {
+            return "salles";
+        }
     }
-
-
-
-
 }
